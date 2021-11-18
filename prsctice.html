@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Object</title>
+</head>
+<body>
+    <input type="text" id="name" placeholder="Employee's Name">
+    <input type="text" id="id" placeholder="Employee's Id">
+    <input type="text" id="age" placeholder="Employee's Age">
+    <input type="text" id="salary" placeholder="Employee's Salary">
+    
+    <button onclick="addData(this.parentElement)">Click To Add Data</button>
+
+    <table border="1" id="tableData">
+
+    </table>
+    <script>
+    var dataBase = []
+    var i = 0
+    var filterData = `<tr><th>Employer's Name</th><th>Employer's Id</th><th>Employer's Age</th><th>Employer's Salary</th><th>Click To Remove Data</th></tr>`
+    function addData()
+    {
+        var name = document.getElementById("name").value
+        var id = document.getElementById("id").value
+        var sal = document.getElementById("salary").value
+        var age = document.getElementById("age").value
+
+        const person = new Object();
+        person.ename = name;
+        person.eid = id;
+        person.eage = age;
+        person.esalary = sal; 
+
+        dataBase[i] = Object.values(person)
+      
+        
+       
+            filterData+=`<tr id='remdata${i}'><th>${dataBase[i][0]}</th><th>${dataBase[i][1]}</th><th>${dataBase[i][2]}</th><th>${dataBase[i][3]}</th><th onclick='removeData(this.parentElement.id)'>X</th></tr>`
+        
+            document.getElementById("tableData").innerHTML = filterData
+        i++
+        console.log(filterData)
+    }
+    function removeData(value)
+        {
+            data1 = document.getElementById(value).firstChild.innerText
+           for (key in dataBase) {
+               if (dataBase[key][0] == data1) {
+                  delete dataBase[key]
+               }
+           }
+        }
+    
+    
+    </script>
+    
+</body>
+</html>
