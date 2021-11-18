@@ -37,24 +37,29 @@
         dataBase[i] = Object.values(person)
       
         
-       
-            filterData+=`<tr id='remdata${i}'><th>${dataBase[i][0]}</th><th>${dataBase[i][1]}</th><th>${dataBase[i][2]}</th><th>${dataBase[i][3]}</th><th onclick='removeData(this.parentElement.id)'>X</th></tr>`
-        
-            document.getElementById("tableData").innerHTML = filterData
+        for (x in dataBase) {
+            filterData+=`<tr id='remdata${x}'><th>${dataBase[x][0]}</th><th>${dataBase[x][1]}</th><th>${dataBase[x][2]}</th><th>${dataBase[x][3]}</th><th onclick='removeData(this.parentElement.id)'>X</th></tr>`
+        }
+        document.getElementById("tableData").innerHTML = filterData
         i++
-        console.log(filterData)
+  
     }
     function removeData(value)
         {
+
+            document.getElementById(value).style.display = "none"
             data1 = document.getElementById(value).firstChild.innerText
            for (key in dataBase) {
                if (dataBase[key][0] == data1) {
                   delete dataBase[key]
                }
            }
+           console.log(dataBase)
         }
-    
-    
+    function displayData(){
+        
+    }
+    displayData()
     </script>
     
 </body>
