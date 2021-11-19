@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- <link rel="stylesheet" href="fontawesome-free-5.15.4-web/css/all.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        :root{
+            --ma1:20px;
+            --pad2:5px;
+            --pad3:10px;
+            --pad1:30px;
+        }
+        *{padding: 0px;font-family: Arial, Helvetica, sans-serif;}
+        .box{display: flex;justify-content: space-around;background-color: #193498;width: 80vw;margin: 100px auto;height: 600px;}
+        .container{width: 500px;background-color: white;height: 60%;padding: var(--pad1);margin: auto;}
+        .tablebox{overflow-y: scroll;margin: 30px 0px;height: 200px;}
+        label,span{display: block;}
+        span{margin: var(--ma1);}
+        input{padding: var(--pad2);margin-top: 10px;}
+        table{min-width:100%;border-color: white;color: #DADDFC;border-collapse: collapse;}
+        table tr{background-color: #1597E5;}
+        table tr:first-child{background-color: #113CFC;}
+        th{width: fit-content;padding: var(--pad2);}
+        button{margin: 10px 20px; padding: var(--pad3) var(--pad1);background-color: #113CFC;border-radius: 10px;color: white;font-weight: 600;}
+
+
+
+
+
+        @media(max-width:600px){
+            :root{
+            --ma1:10px;
+            --pad2:3px;
+            --pad3:5px;
+            --pad1:15px;
+            }
+            *{font-size: var(--ma1);}
+            .box{flex-wrap: wrap;}
+            .tablebox{overflow-x: scroll;}
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="container">
+            <span><label for="name">Name :-</label>
+                <input type="text" id="name"></span>
+            <span><label for="id">Number :-</label>
+                <input type="text" id="id"><br></span>
+            <span><label for="salary">Salary :-</label>
+                <input type="text" id="salary"></span>
+
+            <button onclick="saveData()">Click To Save Data</button>
+            
+        </div>
+        <div class="container">
+            <h2>Employee's Data</h2>
+            
+            <div class="tablebox">
+                <table border="1" id="tabledata">
+
+                </table>
+            </div>
+        </div>
+    </div>
+    <script>
+        
+
+        var data = []
+        
+        function saveData(){
+            var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th></tr>`
+            var name = document.getElementById("name").value
+            var id = document.getElementById("id").value
+            var sal = document.getElementById("salary").value
+
+            var person = {ename:name,eid:id,esalary:sal}
+
+            i=0
+            data.push(person)
+        
+            data.forEach(x => {
+                i++
+                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
+            });
+        
+            document.getElementById("tabledata").innerHTML = table
+        }
+        function deleteData(element){
+            
+          var string =  document.getElementById(element.id).firstChild.innerText
+        
+          for (key in data) {
+              if (data[key].ename == string) {
+                 data.splice(key,1)               
+              }
+          }
+          var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th></tr>`
+          data.forEach(x => {
+                i++
+                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
+            });
+        
+            document.getElementById("tabledata").innerHTML = table
+            
+        }
+    </script>
+</body>
+</html>
