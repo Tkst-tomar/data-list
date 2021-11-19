@@ -22,10 +22,11 @@ function saveData() {
 function deleteData(element) {
 
     if (data.length == 1) {
-        document.getElementById("tabledata").innerText = "No Data availale"
-        document.getElementById("tabledata").style.color = "red"
+        var tbl = document.getElementById("tabledata")
+        tbl.innerText = "No Data availale"
+        tbl.style.color = "red"
     } else {
-        console.log(data.length)
+        
         var string = document.getElementById(element.id).firstChild.innerText
 
         for (key in data) {
