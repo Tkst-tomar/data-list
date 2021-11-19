@@ -14,8 +14,8 @@
             --pad3:10px;
             --pad1:30px;
         }
-        *{padding: 0px;font-family: Arial, Helvetica, sans-serif;}
-        .box{display: flex;justify-content: space-around;background-color: #193498;width: 80vw;margin: 100px auto;height: 600px;}
+        *{padding: 0px;font-family: Arial, Helvetica, sans-serif;color: black;font-weight: 800;}
+        .box{display: flex;justify-content: space-around;background-color: #193498;width: 80vw;margin: 100px auto;height: 600px;align-items: center;}
         .container{width: 500px;background-color: #FC997C;height: 60%;padding: var(--pad1);margin:var(--pad1);}
         .tablebox{overflow-y: scroll;margin: 30px 0px;height: 200px;}
         label,span{display: block;}
@@ -31,7 +31,7 @@
 
 
 
-        @media(max-width:600px){
+        @media(max-width:835px){
             :root{
             --ma1:10px;
             --pad2:3px;
@@ -100,10 +100,10 @@
                  data.splice(key,1)               
               }
           }
-          var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th></tr>`
+          var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th><th>Edit</th></tr>`
           data.forEach(x => {
                 i++
-                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
+                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th><th onclick="editData(this.parentElement)"><i class="far fa-edit"></i></th></tr>`
             });
         
             document.getElementById("tabledata").innerHTML = table
