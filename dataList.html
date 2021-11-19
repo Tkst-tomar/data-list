@@ -16,7 +16,7 @@
         }
         *{padding: 0px;font-family: Arial, Helvetica, sans-serif;}
         .box{display: flex;justify-content: space-around;background-color: #193498;width: 80vw;margin: 100px auto;height: 600px;}
-        .container{width: 500px;background-color: #FC997C;height: 60%;padding: var(--pad1);margin: auto;}
+        .container{width: 500px;background-color: #FC997C;height: 60%;padding: var(--pad1);margin:var(--pad1);}
         .tablebox{overflow-y: scroll;margin: 30px 0px;height: 200px;}
         label,span{display: block;}
         span{margin: var(--ma1);}
@@ -39,6 +39,7 @@
             --pad1:15px;
             }
             *{font-size: var(--ma1);}
+            .container{margin:var(--ma1);height: fit-content;}
             .box{flex-wrap: wrap;}
             .tablebox{overflow-x: scroll;}
         }
