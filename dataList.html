@@ -16,12 +16,12 @@
         }
         *{padding: 0px;font-family: Arial, Helvetica, sans-serif;}
         .box{display: flex;justify-content: space-around;background-color: #193498;width: 80vw;margin: 100px auto;height: 600px;}
-        .container{width: 500px;background-color: white;height: 60%;padding: var(--pad1);margin: auto;}
+        .container{width: 500px;background-color: #FC997C;height: 60%;padding: var(--pad1);margin: auto;}
         .tablebox{overflow-y: scroll;margin: 30px 0px;height: 200px;}
         label,span{display: block;}
         span{margin: var(--ma1);}
         input{padding: var(--pad2);margin-top: 10px;}
-        table{min-width:100%;border-color: white;color: #DADDFC;border-collapse: collapse;}
+        table{min-width:100%;border-color: #FC997C;color: #DADDFC;border-collapse: collapse;}
         table tr{background-color: #1597E5;}
         table tr:first-child{background-color: #113CFC;}
         th{width: fit-content;padding: var(--pad2);}
@@ -54,7 +54,7 @@
             <span><label for="salary">Salary :-</label>
                 <input type="text" id="salary"></span>
 
-            <button onclick="saveData()">Click To Save Data</button>
+            <button id="btn" onclick="saveData()">Click To Save Data</button>
             
         </div>
         <div class="container">
@@ -73,7 +73,7 @@
         var data = []
         
         function saveData(){
-            var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th></tr>`
+            var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Delete</th><th>Edit</th></tr>`
             var name = document.getElementById("name").value
             var id = document.getElementById("id").value
             var sal = document.getElementById("salary").value
@@ -85,7 +85,7 @@
         
             data.forEach(x => {
                 i++
-                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
+                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th><th onclick="editData(this.parentElement)"><i class="far fa-edit"></i></th></tr>`
             });
         
             document.getElementById("tabledata").innerHTML = table
@@ -106,6 +106,29 @@
             });
         
             document.getElementById("tabledata").innerHTML = table
+            
+        }
+        function editData(edit){
+            var string = document.getElementById(edit.id).firstChild.innerText
+            document.getElementById("btn").innerText = "Edit Data"
+            for (key in data) {
+              if (data[key].ename == string) {
+            document.getElementById("name").value = data[key].ename
+            document.getElementById("id").value = data[key].eid
+            document.getElementById("salary").value = data[key].esalary    
+              }
+
+            }
+            for (key in data) {
+              if (data[key].ename == string) {
+                 data.splice(key,1)               
+              }
+          }
+          var table = `<tr><th>Employee's Name</th><th>Id</th><th>Salary</th><th>Remove Data</th></tr>`
+          data.forEach(x => {
+                i++
+                table+=`<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
+            });
             
         }
     </script>
