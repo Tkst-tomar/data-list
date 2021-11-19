@@ -16,7 +16,7 @@ function saveData() {
         i++
         table += `<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th><th onclick="editData(this.parentElement)"><i class="far fa-edit"></i></th></tr>`
     });
-
+    document.getElementById("btn").innerText = "Click To Save Data"
     document.getElementById("tabledata").innerHTML = table
 }
 function deleteData(element) {
@@ -65,5 +65,5 @@ function editData(edit) {
         i++
         table += `<tr id="row${i}"><th>${x.ename}</th><th>${x.eid}</th><th>${x.esalary}</th><th onclick="deleteData(this.parentElement)"><i class="far fa-trash-alt"></i></th></tr>`
     });
-        document.getElementById("btn").innerText = "Click To Save Data"
+
 }
