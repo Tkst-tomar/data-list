@@ -21,7 +21,7 @@ function saveData() {
 }
 function deleteData(element) {
 
-    if (data.length == 1) {
+    if (data.length == 0) {
         var tbl = document.getElementById("tabledata")
         tbl.innerText = "No Data availale"
         tbl.style.color = "red"
